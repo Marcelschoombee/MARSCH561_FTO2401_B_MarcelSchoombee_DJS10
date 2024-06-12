@@ -21,6 +21,23 @@ export function Blog() {
                 setError(error.message);
             }
         }
+        fetchPosts();
+    }, []);
 
-
+    if (error) {
+        return <div className="error-message">Error: {error}</div>;
     }
+
+    return (
+        <div className="blog-posts">
+            {posts.map((post) => (
+                <div key={post.id} className="post">
+                    <h2>{post.title}</h2>
+                    <p>{post.body}</p>
+                </div>
+            ))}
+        </div>
+    );
+
+
+}
